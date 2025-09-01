@@ -1,41 +1,43 @@
 \documentclass[11pt]{article}
 \usepackage{amsmath, amssymb, graphicx}
+\usepackage{booktabs}
+\usepackage{subcaption}
 \title{A Benchmark Dataset for Satellite-Based Estimation and Detection of Rain}
 \author{%
-Simon Pfreundschuh\textsuperscript{1}, %
-Malarvizhi Arulraj\textsuperscript{2}, %
-Ali Behrangi\textsuperscript{3}, %
-Linda Bogerd\textsuperscript{3}, \\
-Alan James Peixoto Calheiros\textsuperscript{3}, %
-Daniele Casella\textsuperscript{3}, %
-Neda Dolatabadi\textsuperscript{3}, \\ %
-Clement Guilloteau\textsuperscript{2}, %
-Jie Gong\textsuperscript{3}, %
-Pierre Kirstetter\textsuperscript{3}, %
-GyuWon Lee\textsuperscript{3}, \\ %
-Maximilian Maahn\textsuperscript{3}, %
-Lisa Milani\textsuperscript{3}, %
-Rayana Palharini\textsuperscript{3},\\%
-Veljko Petković\textsuperscript{3}, %
-Soorok Ryu\textsuperscript{3}, %
-Paolo Sanò\textsuperscript{3}, %
-Jackson Tan\textsuperscript{3}\\
+	Simon Pfreundschuh\textsuperscript{1}, %
+	Malarvizhi Arulraj\textsuperscript{2}, %
+	Ali Behrangi\textsuperscript{3}, %
+	Linda Bogerd\textsuperscript{3}, \\
+	Alan James Peixoto Calheiros\textsuperscript{3}, %
+	Daniele Casella\textsuperscript{3}, %
+	Neda Dolatabadi\textsuperscript{3}, \\ %
+	Clement Guilloteau\textsuperscript{2}, %
+	Jie Gong\textsuperscript{3}, %
+	Pierre Kirstetter\textsuperscript{3}, %
+	GyuWon Lee\textsuperscript{3}, \\ %
+	Maximilian Maahn\textsuperscript{3}, %
+	Lisa Milani\textsuperscript{3}, %
+	Rayana Palharini\textsuperscript{3},\\%
+	Veljko Petković\textsuperscript{3}, %
+	Soorok Ryu\textsuperscript{3}, %
+	Paolo Sanò\textsuperscript{3}, %
+	Jackson Tan\textsuperscript{3}\\
 }
 \date{
-  \textsuperscript{2} University of California Irvine, Department of Civil and Environmental Engineering
-  \textsuperscript{3} Department of Hydrology and Atmospheric Sciences, University of Arizona\\
-  \textsuperscript{2} Department of Mathematics, University B, City, Country \\
-  \textsuperscript{3} Department of Atmospheric Science, Colorado State University \\
-  \textsuperscript{4} Instituto Nacional de Pesquisas Espaciais \\
-  \textsuperscript{5} Department of Atmospheric Sciences, Kyungpook National University \\
-  \textsuperscript{5} Department of Atmospheric Sciences, Kyungpook National University \\
-  \textsuperscript{6} NASA Goddard Space Flight Center \\
-  \textsuperscript{7} University of Maryland, Baltimore County \\
-  \textsuperscript{7} University of Maryland\\
-  \textsuperscript{8} Institute for Meteorology, University of Leipzig \\
-  \textsuperscript{9} Institute of Atmospheric Sciences and Climate, Italian National Research Council \\
-  \textsuperscript{10} Earth System Science Interdisciplinary Center, University of Maryland  \\
-  \textsuperscript{10} Cooperative Institute for Satellite Earth System Studies, University of Maryland  \\
+	\textsuperscript{2} University of California Irvine, Department of Civil and Environmental Engineering
+	\textsuperscript{3} Department of Hydrology and Atmospheric Sciences, University of Arizona\\
+	\textsuperscript{2} Department of Mathematics, University B, City, Country \\
+	\textsuperscript{3} Department of Atmospheric Science, Colorado State University \\
+	\textsuperscript{4} Instituto Nacional de Pesquisas Espaciais \\
+	\textsuperscript{5} Department of Atmospheric Sciences, Kyungpook National University \\
+	\textsuperscript{5} Department of Atmospheric Sciences, Kyungpook National University \\
+	\textsuperscript{6} NASA Goddard Space Flight Center \\
+	\textsuperscript{7} University of Maryland, Baltimore County \\
+	\textsuperscript{7} University of Maryland\\
+	\textsuperscript{8} Institute for Meteorology, University of Leipzig \\
+	\textsuperscript{9} Institute of Atmospheric Sciences and Climate, Italian National Research Council \\
+	\textsuperscript{10} Earth System Science Interdisciplinary Center, University of Maryland  \\
+	\textsuperscript{10} Cooperative Institute for Satellite Earth System Studies, University of Maryland  \\
 }
 
 \date{}
@@ -44,27 +46,27 @@ Jackson Tan\textsuperscript{3}\\
 
 \begin{abstract}
 
-Accurately monitoring the global distribution and evolution of precipitation is
-essential for understanding precipitation processes and improving forecasts.
-Satellite observations remain the only means of achieving consistent,
-global-scale precipitation monitoring. While machine learning has long been
-applied to satellite-based precipitation retrieval, the absence of a
-standardized benchmark dataset has hindered fair comparisons between methods and
-limited progress in algorithm development.
+	Accurately monitoring the global distribution and evolution of precipitation is
+	essential for understanding precipitation processes and improving forecasts.
+	Satellite observations remain the only means of achieving consistent,
+	global-scale precipitation monitoring. While machine learning has long been
+	applied to satellite-based precipitation retrieval, the absence of a
+	standardized benchmark dataset has hindered fair comparisons between methods and
+	limited progress in algorithm development.
 
-To address this gap, the International Precipitation Working Group has developed
-SatRain, the first AI-ready benchmark dataset for satellite-based precipitation
-detection and estimation. SatRain includes multi-sensor satellite observations
-representative of the major platforms currently used in precipitation remote
-sensing, paired with high-quality reference estimates from ground-based radars
-corrected using rain gauge measurements. It offers a standardized evaluation
-protocol to enable robust and reproducible comparisons across machine learning
-approaches.
+	To address this gap, the International Precipitation Working Group has developed
+	SatRain, the first AI-ready benchmark dataset for satellite-based precipitation
+	detection and estimation. SatRain includes multi-sensor satellite observations
+	representative of the major platforms currently used in precipitation remote
+	sensing, paired with high-quality reference estimates from ground-based radars
+	corrected using rain gauge measurements. It offers a standardized evaluation
+	protocol to enable robust and reproducible comparisons across machine learning
+	approaches.
 
-In addition to supporting algorithm evaluation, the diversity of sensors and
-inclusion of time-resolved geostationary observations make SatRain a valuable
-foundation for developing next-generation AI models to deliver more accurate,
-detailed, and globally consistent precipitation estimates.
+	In addition to supporting algorithm evaluation, the diversity of sensors and
+	inclusion of time-resolved geostationary observations make SatRain a valuable
+	foundation for developing next-generation AI models to deliver more accurate,
+	detailed, and globally consistent precipitation estimates.
 
 \end{abstract}
 
@@ -126,29 +128,37 @@ their limitation to visible and infrared frequencies, which are sensitive only
 to the upper parts of the clouds and thus provide an even less direct link to
 surface precipitation compared to PMW measurements.
 
-Figure 1 illustrates the key characteristics of the various types of satellite
-observations used for the remote sensing of precipitation. Panel (a) presents a
-true-color composite from the Advanced Baseline Imager (ABI) aboard GOES-16,
-showing Hurricane Laura as an expansive cloud system in the southeastern portion
-of the domain. Visible imagery such as this true-color composite can reveal
-detailed cloud structures but is limited to daylight hours due to its reliance
-on reflected sunlight. Panel (b) displays thermal infrared (IR) imagery with a
-wavelength of 11 µm observed from a constellation of geostationary sensors. At
-this wavelength, the clear-sky atmosphere exhibits high transmittance, while
-clouds are opaque. Consequently, the measured radiances primarily originate from
-the Earth’s surface in cloud-free regions and from cloud tops in cloudy regions.
-Due to the vertical thermal structure of the atmosphere, the cloud tops appear
-as areas of cold brightness temperatures against a relatively warmer background.
-Panel (c) shows passive microwave observations at a frequency of 89 GHz,
-corresponding to a wavelength of around 0.33 cm. Surface-sensitive passive
-microwave observations are characterized by a strong contrast between ocean and
-land surfaces. Over the radiatively cold ocean background, Hurricane Laura’s
-rainband appears as a region of enhanced brightness temperature due to emission
-from liquid hydrometeors. Over land, the surface itself emits strongly at
-microwave frequencies, making it difficult to isolate the emission signal from
-raindrops. Instead, precipitation is primarily detected through the scattering
-signature of large raindrops and ice particles, which reduce the observed
-brightness temperatures by attenuating surface emission.
+\begin{figure}[htbp] % h=here, t=top, b=bottom, p=page of floats
+	\centering
+	\includegraphics[width=1.0\textwidth]{figures/fig01}
+	\caption{Satellite observations and surface precipitation estimates for Hurricane Laura on August 27, 2020, at 08:27 UTC. Panel (a) shows a true-color composite from the Advanced Baseline Imager (ABI) aboard the GOES-16 geostationary satellite. Panel (b) displays globally available thermal infrared imagery at 11 µm derived from a constellation of geostationary satellites. Panel (c) presents passive microwave observations from the GPM Microwave Imager (GMI) 89-GHz channel, overlaid on the GOES true-color RGB. Panel (d) depicts surface precipitation rate estimates from NOAA’s Multi-Radar Multi-Sensor product.}
+	\label{fig:observations_conus}
+\end{figure}
+
+Figure~\ref{fig:observations_conus} illustrates the key characteristics of the
+various types of satellite observations used for the remote sensing of
+precipitation. Panel (a) presents a true-color composite from the Advanced
+Baseline Imager (ABI) aboard GOES-16, showing Hurricane Laura as an expansive
+cloud system in the southeastern portion of the domain. Visible imagery such as
+this true-color composite can reveal detailed cloud structures but is limited to
+daylight hours due to its reliance on reflected sunlight. Panel (b) displays
+thermal infrared (IR) imagery with a wavelength of 11 µm observed from a
+constellation of geostationary sensors. At this wavelength, the clear-sky
+atmosphere exhibits high transmittance, while clouds are opaque. Consequently,
+the measured radiances primarily originate from the Earth’s surface in
+cloud-free regions and from cloud tops in cloudy regions. Due to the vertical
+thermal structure of the atmosphere, the cloud tops appear as areas of cold
+brightness temperatures against a relatively warmer background. Panel (c) shows
+passive microwave observations at a frequency of 89 GHz, corresponding to a
+wavelength of around 0.33 cm. Surface-sensitive passive microwave observations
+are characterized by a strong contrast between ocean and land surfaces. Over the
+radiatively cold ocean background, Hurricane Laura’s rainband appears as a
+region of enhanced brightness temperature due to emission from liquid
+hydrometeors. Over land, the surface itself emits strongly at microwave
+frequencies, making it difficult to isolate the emission signal from raindrops.
+Instead, precipitation is primarily detected through the scattering signature of
+large raindrops and ice particles, which reduce the observed brightness
+temperatures by attenuating surface emission.
 
 Comparing the three panels to the corresponding radar-based surface
 precipitation estimates underscores the strength of passive microwave
@@ -247,11 +257,21 @@ native sensor sampling, SatRain retains this format to support these retrieval
 designs and cross-comparison against existing operational retrievals such as the
 Goddard Profiling Algorithm [9], [12].
 
+\begin{figure}[htbp] % h=here, t=top, b=bottom, p=page of floats
+	\centering
+	\includegraphics[width=1.0\textwidth]{figures/fig02}
+	\caption{
+		Passive microwave observations from the GMI (a - c) and ATMS (d - f) sensors during landfall of Hurricane Laura on August 27, 2020. The top row displays three selected channels from the GMI sensor, highlighting its high-resolution but limited swath. The bottom row presents corresponding channels from the ATMS sensor for comparison. The blue contour line encloses regions with surface precipitation rates exceeding 1 mm h$^{-1}$.
+	}
+	\label{fig:observations_pmw}
+\end{figure}
+
+
 The PMW observations used to build the SatRain dataset are sourced from two
 different sensors: the GPM Microwave Imager (GMI) [13] aboard the GPM Core
 Observatory, and a selection of channels of the Advanced Technology Microwave
 Sounder (ATMS) aboard the Suomi National Polar-orbiting Partnership satellite
-[14]. The channels included from each sensor are listed in Table 1. The GMI and
+	[14]. The channels included from each sensor are listed in Table 1. The GMI and
 ATMS sensors were chosen to represent two ends of the spectrum of PMW
 instrumentation used for measuring precipitation. GMI, the flagship PMW sensor
 of the GPM constellation, has been designed for precipitation remote sensing and
@@ -260,20 +280,93 @@ contrast, ATMS was developed primarily for operational weather forecasting and,
 compared to GMI, offers fewer precipitation-sensitive channels and significantly
 coarser spatial resolution.
 
-Figure 2 shows GMI and ATMS observations of Hurricane Laura, taken at 12:41 UTC
-and 8:41 UTC, respectively, on August 27, 2020. Compared to ATMS, GMI has a
-considerably narrower swath and thus remains more limited in its spatial
-coverage. However, the GMI sensor offers higher spatial resolution, allowing it
-to resolve finer cloud and precipitation structures than ATMS. The two sensors
-also differ in their scanning techniques: GMI is a conical scanner, meaning its
-antenna beam sweeps out a cone with a nearly constant Earth-incidence angle. As
-a result, its polarization and field of view characteristics remain consistent
-across the swath. ATMS, in contrast, uses a cross-track scanning technique. This
-causes the antenna footprint to increase in size toward the edges of the swath,
-reducing spatial resolution. Additionally, variations in ray path length and
-polarization angle introduce systematic changes in observation across the scan.
+\begin{table}[htbp]
+	\centering
+	% === Left Table ===
+	\begin{subtable}{0.45\textwidth}
+		\centering
+		\begin{tabular}{ccc}
+			\multicolumn{3}{c}{GMI}            \\[0.5ex]
+			\toprule
+			Freq. [GHz] & Pol. & FOV [km x km] \\
+			\midrule
+			10.65       & V    & 32 x 19       \\
+			10.65       & H    & 32 x 19       \\
+			18.7        & V    & 18 x 11       \\
+			18.7        & H    & 18 x 11       \\
+			23.8        & V    & 15 x 9.2      \\
+			36.5        & V    & 14 x 8.6      \\
+			36.5        & H    & 14 x 8.6      \\
+			89.0        & V    & 7.2 x 4.4     \\
+			89.0        & H    & 7.2 x 4.4     \\
+			166.5       & V    & 7.2 x 4.4     \\
+			166.5       & H    & 7.2 x 4.4     \\
+			\bottomrule
+		\end{tabular}
+		\caption{Channel frequencies and polarizations of the GMI sensor included in the SatRain dataset.}
+		\label{tab:left}
+	\end{subtable}%
+	\hfill%
+	% === Right Table ===
+	\begin{subtable}{0.45\textwidth}
+		\centering
+		\begin{tabular}{ccc}
+			\multicolumn{2}{c}{ATMS}           \\[0.5ex]
+			\toprule
+			Freq [GHz]       & Pol. & FOV [km] \\
+			\midrule
+			23.800           & QV   & 75       \\
+			31.400           & QV   & 75       \\
+			88.2             & QV   & 32       \\
+			165.5            & QH   & 16       \\
+			183.31 $\pm$ 7.0 & QH   & 16       \\
+			183.31 $\pm$ 4.5 & QH   & 16       \\
+			183.31 $\pm$ 3.0 & QH   & 16       \\
+			183.31 $\pm$ 1.8 & QH   & 16       \\
+			183.31 $\pm$ 1.0 & QH   & 16       \\
+			183.31 $\pm$ 7   & V    & 16       \\
+			183.31 $\pm$ 3   & V    & 16       \\
+			\bottomrule
+		\end{tabular}
+		\caption{Channel frequencies and polarizations of the ATMS sensor included in the SatRain dataset.}
+		\label{tab:right}
+	\end{subtable}
+	\caption{Frequencies and polarizations of the passive microwave observations included in the SatRain dataset.}
+	\label{tab:both}
+\end{table}
+
+Figure~\ref{fig:observations_pmw} shows GMI and ATMS observations of Hurricane
+Laura, taken at 12:41 UTC and 8:41 UTC, respectively, on August 27, 2020.
+Compared to ATMS, GMI has a considerably narrower swath and thus remains more
+limited in its spatial coverage. However, the GMI sensor offers higher spatial
+resolution, allowing it to resolve finer cloud and precipitation structures than
+ATMS. The two sensors also differ in their scanning techniques: GMI is a conical
+scanner, meaning its antenna beam sweeps out a cone with a nearly constant
+Earth-incidence angle. As a result, its polarization and field of view
+characteristics remain consistent across the swath. ATMS, in contrast, uses a
+cross-track scanning technique. This causes the antenna footprint to increase in
+size toward the edges of the swath, reducing spatial resolution. Additionally,
+variations in ray path length and polarization angle introduce systematic
+changes in observation across the scan.
 
 \subsubsection{Geostationary Observations}
+
+\begin{figure}[htbp] % h=here, t=top, b=bottom, p=page of floats
+	\centering
+	\includegraphics[width=1.0\textwidth]{figures/fig03}
+	\caption{
+		The 16 channels of the GOES Advanced Baseline Imager observing Hurricane
+		Laura during landfall on August 27, 2020, at 08:27 UTC. The first six
+		channels primarily measure reflected solar radiation. The remaining
+		channels measure infrared radiation emitted from the atmosphere.
+		Observations from geostationary sensors have the advantage of providing
+		close-to continuous coverage but are sensitive primarily to cloud-top
+		properties and thus only provide limited information on precipitation
+		close to the surface.
+	}
+	\label{fig:observations_geo}
+\end{figure}
+
 
 A principal limitation of passive microwave observations is their restricted
 spatial and temporal coverage, as they are confined to the discrete overpass
@@ -317,20 +410,65 @@ dataset. Since these observations are available almost continuously from 1998,
 they play an important role for generating long-term precipitation records and
 are included as an independent input data source in the SatRain dataset.
 
+
+
 \subsubsection{Ancillary Data}
+
+\begin{figure}[htbp] % h=here, t=top, b=bottom, p=page of floats
+	\centering
+	\includegraphics[width=1.0\textwidth]{figures/fig04}
+	\caption{
+		Ancillary variables provided by the SatRain dataset for the scene
+		depicted in Fig. 1. Panels (a) to (q) show the dynamic ERA5 fields included in
+		the ancillary data. Panel (r ) shows the 18-class surface classification from
+		the GPROF algorithm and panel (s) the surface elevation from the NOAA Globe
+		dataset.
+	}
+	\label{fig:observations_geo}
+\end{figure}
 
 Because the relationship between satellite observations and surface precipitation is often under-constrained, it is common to augment satellite observations with complementary environmental information, so-called ancillary data, to improve the accuracy of the precipitation estimates. Typical examples include the surface type, atmospheric and surface temperatures, humidity, and elevation. The SatRain dataset includes several static and dynamic ancillary variables. Dynamic ancillary data describing the state of the atmosphere and the surface are derived from the ERA5 [18] dataset. In addition to that, the ancillary data also contains an 18-class surface classification that has been developed for the Goddard Profiling Algorithm (GPROF, ) precipitation retrieval and combines microwave-based surface-type information with snow- and sea-ice coverage data from the Autosnow product [19]. In terms of static variables, SatRain provides the surface elevation sourced from the NOAA Global Land One-kilometer Base Elevation (GLOBE) digital elevation model [20].
 
 \subsubsection{Precipitation Reference}
 
+\begin{figure}[htbp] % h=here, t=top, b=bottom, p=page of floats
+	\centering
+	\includegraphics[width=1.0\textwidth]{figures/fig05}
+	\caption{
+		Reference precipitation estimates and auxiliary fields from the SatRain
+		dataset during the landfall of Hurricane Laura. Panel (a) shows surface
+		precipitation estimates from NOAA’s gauge-corrected Multi-Radar
+		Multi-Sensor product. Panel (b) displays the radar quality index
+		quantifying the reliability of the precipitation estimates. Panel (c)
+		presents the convective fraction field, illustrating the hydrometeor
+		classification data included in the SatRain dataset.
+	}
+	\label{fig:observations_geo}
+\end{figure}
+
 The precipitation reference used in the SatRain dataset are derived from gauge-corrected ground-based precipitation radar measurements from NOAAs gauge-corrected Multi-Radar Multi-Sensor (MRMS) [21] product. MRMS is based on radar observations from Nexrad, the most extensive network of precipitation radars in the world comprising around 160 polarimetric S-band radars. The radar-derived estimates of liquid precipitation are corrected using hourly gauge-correction factors thus enforcing consistency between instantaneous estimates and direct measurements of hourly accumulations from gauge stations. While a certain level of residual uncertainty in these estimates cannot be eliminated, they are generally considered to be the best currently available estimates of surface precipitation with near-complete coverage over CONUS. In addition to reference surface precipitation rates, the SatRain dataset contains a radar quality index and the gauge correction factor, allowing the user to customize the quality requirements for the radar estimates used during both training and evaluation. Furthermore, the dataset contains precipitation-type masks identifying convective and stratiform rain, snow, and hail as provided by the MRMS data. Examples of these fields are shown in Fig. 5.
 
 \subsubsection{Independent Test Data}
 
+\begin{figure}[htbp] % h=here, t=top, b=bottom, p=page of floats
+	\centering
+	\includegraphics[width=1.0\textwidth]{figures/fig06}
+	\caption{
+		Independent test data included in the SatRain dataset. Panel (a) shows the
+		spatial coverage of the three temporally and spatially independent test
+		datasets. Panel (b) shows the location of the WegenerNet gauge stations used as
+		reference measurements in the Austria domain and the grid they are aggregated
+		to. Panel (c) shows an example in the ‘Korea’ domain, with radar and rain-gauge
+		data obtained from the Korea Meteorological Administration.
+	}
+	\label{fig:observations_geo}
+\end{figure}
+
+
 Since the SatRain training data is derived from four years (2019 - 2021) of ground-based radar measurements over CONUS, evaluating ML retrievals using this same data may lead to overfitting to specific weather patterns or measurement errors in the MRMS-based precipitation reference. To reduce the risk of overfitting on the weather patterns from the training period, the test data is derived from the year 2022. Moreover, the SatRain dataset includes two additional test datasets derived from different geographical regions and measurement systems.
 
 The first geographically independent evaluation dataset consists of gauge-corrected, ground-based radar rainfall estimates over South Korea, generated using radar compositing methods optimized for the Korean domain [22]. The Korea-specific merging technique uses radial basis function interpolation to combine radar and rain gauge observations resulting in a high-resolution rainfall product in both space and time [23]. Although the measurement approach is similar to that used in the MRMS reference data over CONUS, the processing of raw data into precipitation estimates differs. The dataset also represents a distinct climate regime from the training data, offering a valuable test of the precipitation retrieval model’s ability to generalize beyond CONUS conditions. Studies such as [24] and [25]
- showed that cloud characteristics affecting both PMW radiometers and IR observations differ substantially between Korea and CONUS and can cause significant biases in algorithms applied to these two regions. The independent testing data from Korea thus provides an opportunity to assess whether retrieval improvements are achieved at the cost of global generalizability.
+showed that cloud characteristics affecting both PMW radiometers and IR observations differ substantially between Korea and CONUS and can cause significant biases in algorithms applied to these two regions. The independent testing data from Korea thus provides an opportunity to assess whether retrieval improvements are achieved at the cost of global generalizability.
 
 The second independent evaluation dataset is derived from gauge measurements from the WegenerNet [26] gauge network around the Feldbach region in Austria. While IPWG focuses primarily on gauge-corrected radar data for validation, WegenerNet is unique in that its gauge density is sufficiently high that the addition of radar data would not modify any of the gauge accumulations. In addition, it offers validation over a mountainous regime that radar/gauge networks still struggle with. For the comparison against satellite-based precipitation estimates the measurements from the ground stations were aggregated to the 0.036-degree grid using binning. As can be seen in Panel (b) of Fig. 6, the gauge density is sufficient to cover 24 grid cells with at least two gauges per cell. The mapping of the gridded measurements to the on-swath geometry was performed using nearest-neighbor interpolation.
 
@@ -392,6 +530,24 @@ valid observations and reference data. The scene size for the gridded data is
 for the on-swath data is due to the limited width of the swaths of the PMW
 observations, which is 96 for ATMS and 221 for GMI. The scene extraction process
 is illustrated in Fig. 7.
+
+
+\begin{figure}[htbp] % h=here, t=top, b=bottom, p=page of floats
+	\centering
+	\includegraphics[width=1.0\textwidth]{figures/fig08}
+	\caption{
+		Satellite observations and reference precipitation estimates of the SatRain
+		benchmark dataset. Panels (a), (b), and (c) show selected channels from the
+		passive microwave (PMW), visible, and infrared observations that make up the
+		input data of the SatRain dataset. Panel (d) shows the ground-radar-based
+		precipitation reference used as training targets. Grey lines mark the outlines
+		of the training samples extracted from this collocation scene for the gridded
+		and on-swath observations. Black lines mark the sample training scenes displayed
+		in Panel (e) and (f).
+	}
+	\label{fig:observations_geo}
+\end{figure}
+
 
 \section{Data Records}
 
@@ -514,22 +670,22 @@ limited structural detail and correspondingly lower linear correlation and
 higher mean-squared error.
 
 
- To demonstrate the generalizability of the results shown in Fig. 8, we assess
- the retrievals trained on the CONUS dataset on the three testing datasets
- (CONUS, Austria, and Korea). The results of the retrievals trained on the
- SatRain dataset are displayed together with the resulting metrics of the ERA5
- and GPROF V7 baseline results in Fig. 8. The three SatRain retrievals exhibit
- large biases over Austria and Korea. This is likely a result of the retrievals
- being trained using only data from the CONUS. The impact of regional
- precipitation characteristics on regional precipitation accumulations has been
- demonstrated in studies such as . Moreover, these large biases also affect
- operational precipitation products such as GPROF. For the other error metrics,
- however, the relative results from the evaluation over the Austria and Korea
- domains are consistent with the retrieval results obtained over CONUS. Although
- the absolute values of the metrics differ between the three test datasets, the
- ranking remains the same indicating that benchmark that the corresponding
- accuracy metrics generalize to independent spatial domains, measurement
- techniques, and temporal periods.
+To demonstrate the generalizability of the results shown in Fig. 8, we assess
+the retrievals trained on the CONUS dataset on the three testing datasets
+(CONUS, Austria, and Korea). The results of the retrievals trained on the
+SatRain dataset are displayed together with the resulting metrics of the ERA5
+and GPROF V7 baseline results in Fig. 8. The three SatRain retrievals exhibit
+large biases over Austria and Korea. This is likely a result of the retrievals
+being trained using only data from the CONUS. The impact of regional
+precipitation characteristics on regional precipitation accumulations has been
+demonstrated in studies such as . Moreover, these large biases also affect
+operational precipitation products such as GPROF. For the other error metrics,
+however, the relative results from the evaluation over the Austria and Korea
+domains are consistent with the retrieval results obtained over CONUS. Although
+the absolute values of the metrics differ between the three test datasets, the
+ranking remains the same indicating that benchmark that the corresponding
+accuracy metrics generalize to independent spatial domains, measurement
+techniques, and temporal periods.
 
 A notable exception to this is the accuracy of the geostationary Vis/IR
 retrieval over Austria, which is lower than over the other domains. This is due
