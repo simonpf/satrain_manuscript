@@ -9,43 +9,43 @@
 \usepackage[round]{natbib}
 \title{A Benchmark Dataset for Satellite-Based Estimation and Detection of Rain}
 \author{%
-	Simon Pfreundschuh\textsuperscript{1}, %
+	Simon Pfreundschuh\textsuperscript{1, *}, \thanks{Corresponding author: simon.pfreundschuh@colostate.edu} %
 	Malarvizhi Arulraj\textsuperscript{2}, %
-	Ali Behrangi\textsuperscript{3}, %
-	Linda Bogerd\textsuperscript{3}, \\
-	Alan James Peixoto Calheiros\textsuperscript{3}, %
-	Daniele Casella\textsuperscript{3}, %
-	Neda Dolatabadi\textsuperscript{3}, \\ %
-	Clement Guilloteau\textsuperscript{2}, %
-	Jie Gong\textsuperscript{3}, %
-	Pierre Kirstetter\textsuperscript{3}, %
-	GyuWon Lee\textsuperscript{3}, \\ %
-	Maximilian Maahn\textsuperscript{3}, %
+	Ali Behrangi\textsuperscript{3},\\ %
+	Linda Bogerd\textsuperscript{2},%
+	Alan James Peixoto Calheiros\textsuperscript{4}, %
+	Daniele Casella\textsuperscript{5},\\ %
+	Neda Dolatabadi\textsuperscript{6}, %
+	Clement Guilloteau\textsuperscript{6}, %
+	Jie Gong\textsuperscript{7},\\ %
+	Christian Kummerow\textsuperscript{1}, %
+	Pierre Kirstetter\textsuperscript{8},  %
+	GyuWon Lee\textsuperscript{9},\\ %
+	Maximilian Maahn\textsuperscript{10}, %
 	Lisa Milani\textsuperscript{3}, %
-	Rayana Palharini\textsuperscript{3},\\%
-	Veljko Petković\textsuperscript{3}, %
-	Soorok Ryu\textsuperscript{3}, %
-	Paolo Sanò\textsuperscript{3}, %
-	Jackson Tan\textsuperscript{3}\\
+  Giulia Panegrossi\textsuperscript{5} \\ %
+	Rayana Palharini\textsuperscript{11},%
+	Veljko Petković\textsuperscript{2, 12}, %
+	Soorok Ryu\textsuperscript{9},\\ %
+	Paolo Sanò\textsuperscript{2}, %
+	Jackson Tan\textsuperscript{13}
 }
 \date{
-	\begin{flushleft}
-		\footnotesize
-		\textsuperscript{1} Department of Atmospheric Science, Colorado State University \\
-		\textsuperscript{2} Department of Civil and Environmental Engineering, University of California Irvine \\
-		\textsuperscript{3} Department of Hydrology and Atmospheric Sciences, University of Arizona\\
-		\textsuperscript{2} Department of Mathematics, University B, City, Country \\
-		\textsuperscript{3} Department of Atmospheric Science, Colorado State University \\
-		\textsuperscript{4} Instituto Nacional de Pesquisas Espaciais \\
-		\textsuperscript{5} Department of Atmospheric Sciences, Kyungpook National University \\
-		\textsuperscript{5} Department of Atmospheric Sciences, Kyungpook National University \\
-		\textsuperscript{6} NASA Goddard Space Flight Center \\
-		\textsuperscript{7} University of Maryland, Baltimore County \\
-		\textsuperscript{7} University of Maryland\\
-		\textsuperscript{8} Institute for Meteorology, University of Leipzig \\
-		\textsuperscript{9} Institute of Atmospheric Sciences and Climate, Italian National Research Council \\
-		\textsuperscript{10} Earth System Science Interdisciplinary Center, University of Maryland  \\
-		\textsuperscript{10} Cooperative Institute for Satellite Earth System Studies, University of Maryland  \\
+  \begin{flushleft}
+	\footnotesize
+	\textsuperscript{1} Department of Atmospheric Science, Colorado State University \\
+	\textsuperscript{2} Earth System Science Interdisciplinary Center, University of Maryland  \\
+	\textsuperscript{3} Department of Hydrology and Atmospheric Sciences, University of Arizona\\
+	\textsuperscript{4} Instituto Nacional de Pesquisas Espaciais \\
+	\textsuperscript{5} Institute of Atmospheric Sciences and Climate, Italian National Research Council \\
+	\textsuperscript{6} Department of Civil and Environmental Engineering, University of California Irvine \\
+	\textsuperscript{7} NASA Goddard Space Flight Center \\
+  \textsuperscript{8} School of Meteorology & School of Civil Engineering and Environmental Science, University of Oklahoma \\
+	\textsuperscript{9} Department of Atmospheric Sciences, Kyungpook National University \\
+	\textsuperscript{10} Institute for Meteorology, University of Leipzig \\
+  \textsuperscript{11} Departamento de Prevención de Riegos y Medio Ambiente, Universidad Tecnológica Metropolitana, \\
+	\textsuperscript{12} Cooperative Institute for Satellite Earth System Studies, University of Maryland  \\
+  \textsuperscript{13} University of Maryland Baltimore County \\
 	\end{flushleft}
 }
 
@@ -464,28 +464,28 @@ and SEVIRI sensors were downloaded from \cite{NOAA_GOES_AWS},
 \cite{NOAA_HIMAWARI_AWS}, and \cite{EUMETSAT_SEVIRI}, respectively..
 
 \begin{table}[htbp]
-	\centering
-	\begin{tabular}{lccc}
-		\toprule
-		Channel & ABI  & AHI   & SEVIRI \\
-		\midrule
-		1       & 0.47 & 0.455 & 0.75   \\
-		2       & 0.64 & 0.51  & 0.635  \\
-		3       & 0.86 & 0.645 & 0.81   \\
-		4       & 1.38 & 0.86  & 1.64   \\
-		5       & 1.61 & 1.61  & 3.92   \\
-		6       & 2.26 & 2.26  & 6.25   \\
-		7       & 3.9  & 3.85  & 7.35   \\
-		8       & 6.15 & 6.25  & 8.7    \\
-		9       & 7.0  & 6.95  & 9.66   \\
-		10      & 7.4  & 7.35  & 10.8   \\
-		11      & 8.5  & 8.6   & 12.0   \\
-		12      & 9.7  & 9.63  & 13.4   \\
-		13      & 10.3 & 10.45 & 13.7   \\
-		14      & 11.2 & 11.20 &        \\
-		15      & 12.3 & 12.35 &        \\
-		16      & 13.3 & 13.3  &        \\
-		\bottomrule
+  \centering
+    \begin{tabular}{lccc}
+      \toprule
+      Channel & ABI & AHI & SEVIRI \\
+      \midrule
+      1 & 0.47 & 0.455 & 0.75  \\
+      2 & 0.64 & 0.51  & 0.635 \\
+      3 & 0.86 & 0.645 & 0.81  \\
+      4 & 1.38 & 0.86  & 1.64  \\
+      5 & 1.61 & 1.61  & 3.92  \\
+      6 & 2.26 & 2.26  & 6.25  \\
+      7 & 3.9  & 3.85  & 7.35  \\
+      8 & 6.15 & 6.25  & 8.7   \\
+      9 & 7.0  & 6.95  & 9.66  \\
+      10 & 7.4  & 7.35  & 10.8 \\
+      11 & 8.5  & 8.6   & 12.0 \\
+      12 & 9.7  & 9.63  & 13.4 \\
+      13 & 10.3 & 10.45 &    \\
+      14 & 11.2 & 11.20 &    \\
+      15 & 12.3 & 12.35 &    \\
+      16 & 13.3 & 13.3  &    \\
+      \bottomrule
 	\end{tabular}
 	\caption{Channel central wavelengths ABI sensor on GOES-16, the AHI sensor on Himawari-8/9, and the SEVIRI sensor on Meteosat-10.}
 	\label{tab:geo_channels}
