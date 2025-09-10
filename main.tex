@@ -9,26 +9,26 @@
 \usepackage[round]{natbib}
 \title{A Benchmark Dataset for Satellite-Based Estimation and Detection of Rain}
 \author{%
-	Simon Pfreundschuh\textsuperscript{1, *}, \thanks{Corresponding author: simon.pfreundschuh@colostate.edu} %
+	  Simon Pfreundschuh\thanks{Corresponding author: simon.pfreundschuh@colostate.edu} \textsuperscript{,1}, %
 	Malarvizhi Arulraj\textsuperscript{2}, %
 	Ali Behrangi\textsuperscript{3},\\ %
-	Linda Bogerd\textsuperscript{2},%
+	Linda Bogerd\textsuperscript{2, 7},%
 	Alan James Peixoto Calheiros\textsuperscript{4}, %
 	Daniele Casella\textsuperscript{5},\\ %
 	Neda Dolatabadi\textsuperscript{6}, %
 	Clement Guilloteau\textsuperscript{6}, %
 	Jie Gong\textsuperscript{7},\\ %
-	Christian Kummerow\textsuperscript{1}, %
+	Christian D. Kummerow\textsuperscript{1}, %
 	Pierre Kirstetter\textsuperscript{8},  %
-	GyuWon Lee\textsuperscript{9},\\ %
+	Gyuwon Lee\textsuperscript{9},\\ %
 	Maximilian Maahn\textsuperscript{10}, %
-	Lisa Milani\textsuperscript{3}, %
+	Lisa Milani\textsuperscript{2, 7}, %
   Giulia Panegrossi\textsuperscript{5} \\ %
 	Rayana Palharini\textsuperscript{11},%
 	Veljko Petković\textsuperscript{2, 12}, %
 	Soorok Ryu\textsuperscript{9},\\ %
-	Paolo Sanò\textsuperscript{2}, %
-	Jackson Tan\textsuperscript{13}
+	Paolo Sanò\textsuperscript{5}, %
+	Jackson Tan\textsuperscript{7, 13}
 }
 \date{
   \begin{flushleft}
@@ -42,41 +42,24 @@
 	\textsuperscript{7} NASA Goddard Space Flight Center \\
   \textsuperscript{8} School of Meteorology & School of Civil Engineering and Environmental Science, University of Oklahoma \\
 	\textsuperscript{9} Department of Atmospheric Sciences, Kyungpook National University \\
-	\textsuperscript{10} Institute for Meteorology, University of Leipzig \\
+	\textsuperscript{10} Institute for Meteorology, Leipzig University \\
   \textsuperscript{11} Departamento de Prevención de Riegos y Medio Ambiente, Universidad Tecnológica Metropolitana, \\
 	\textsuperscript{12} Cooperative Institute for Satellite Earth System Studies, University of Maryland  \\
-  \textsuperscript{13} University of Maryland Baltimore County \\
+  \textsuperscript{13} University of Maryland, Baltimore County \\
 	\end{flushleft}
 }
-
+\setlength{\parindent}{0pt}
 \begin{document}
 \maketitle
 
 
 \begin{abstract}
 
-	Accurately tracking the global distribution and evolution of precipitation is
-	essential for both research and operational meteorology. Satellite observations
-	remain the only means of achieving consistent, global-scale precipitation
-	monitoring. While machine learning has long been applied to satellite-based
-	precipitation retrieval, the absence of a standardized benchmark dataset has
-	hindered fair comparisons between methods and limited progress in algorithm
-	development.
+	Accurately tracking the global distribution and evolution of precipitation is essential for both research and operational meteorology. Satellite observations remain the only means of achieving consistent, global-scale precipitation monitoring. While machine learning has long been applied to satellite-based precipitation retrieval, the absence of a standardized benchmark dataset has hindered fair comparisons between methods and limited progress in algorithm development.
 
-	To address this gap, the International Precipitation Working Group has developed
-	SatRain, the first AI-ready benchmark dataset for satellite-based detection and
-	estimation of rain, snow, graupel, and hail. SatRain includes multi-sensor
-	satellite observations representative of the major platforms currently used in
-	precipitation remote sensing, paired with high-quality reference estimates from
-	ground-based radars corrected using rain gauge measurements. It offers a
-	standardized evaluation protocol to enable robust and reproducible comparisons
-	across machine learning approaches.
+	To address this gap, the International Precipitation Working Group has developed SatRain, the first AI-ready benchmark dataset for satellite-based detection and estimation of rain, snow, graupel, and hail. SatRain includes multi-sensor satellite observations representative of the major platforms currently used in precipitation remote sensing, paired with high-quality reference estimates from ground-based radars corrected using rain gauge measurements. It offers a standardized evaluation protocol to enable robust and reproducible comparisons across machine learning approaches.
 
-	In addition to supporting algorithm evaluation, the diversity of
-	sensors and inclusion of time-resolved geostationary observations make SatRain a
-	valuable foundation for developing next-generation AI models to deliver more
-	accurate, detailed, and globally consistent precipitation estimates.
-
+	In addition to supporting algorithm evaluation, the diversity of sensors and inclusion of time-resolved geostationary observations make SatRain a valuable foundation for developing next-generation AI models to deliver more accurate, detailed, and globally consistent precipitation estimates.
 \end{abstract}
 
 \section{Background and Summary}
@@ -628,10 +611,11 @@ radar data for validation, WegenerNet is unique in that its gauge density is
 sufficiently high that the addition of radar data would not modify any of the
 gauge accumulations. In addition, it offers validation over a mountainous regime
 that radar/gauge networks still struggle with. For the comparison against
-satellite-based precipitation estimates the measurements from the ground
-stations were aggregated to the $\SI{0.036}{\degree}$ grid using binning. As can
-be seen in Panel (b) of Fig. 6, the gauge density is sufficient to cover 24 grid
-cells with at least two gauges per cell.
+satellite-based precipitation estimates, the half-hourly accumulations from the
+ground stations were converted to precipitation rates and aggregated to the
+$\SI{0.036}{\degree}$ grid using binning. As can be seen in Panel (b) of Fig. 6,
+the gauge density is sufficient to cover 24 grid cells with at least two gauges
+per cell.
 
 
 \subsection{Dataset Generation}
@@ -670,17 +654,17 @@ of collocation scenes for every overpass of the PMW base sensor, i.e., GMI or
 ATMS, over the targeted domain (CONUS, Austria, or Korea). The resulting
 collocation scene contains all retrieval input data, i.e. satellite observations
 and ancillary data, combined with the coincident reference precipitation on a
-shared spatial grid. Two collocation scenes are extracted for every overpass of
-the base sensors: An on-swath scene, which uses the native sampling of the PMW
-observations, and a gridded scene, which contains all data regridded to a
-regular latitude-longitude grid with a resolution of $\SI{0.036}{\degree}$.
+shared spatial grid. Two type of collocation scenes are extracted for every
+overpass of the base sensors: An on-swath scene, which uses the native sampling
+of the PMW observations, and a gridded scene, which contains all data regridded
+to a regular latitude-longitude grid with a resolution of $\SI{0.036}{\degree}$.
 
 The collocation process, as illustrated in Figure~\ref{fig:data_flow}, starts
 out with the PMW observation from an overpass of GMI or ATMS over the domain
 containing the reference data. Corresponding ground-based reference data and
 ancillary data are extracted to cover the time range of the overpass and
 interpolated to the observation time of each scan-line of the PMW observations.
-The MRMS data, which have a native resolution of 0.01 degree, are reduced in
+The MRMS data, which have a native resolution of $\SI{0.01}{\degree}$, are reduced in
 resolution to match $\SI{0.036}{\degree}$ grid by smoothing using a Gaussian filter with
 a full width at half maximum of $\SI{0.036}{\degree}$ and interpolated linearly to the
 target grid. The mapping of the reference precipitation estimates to the
@@ -689,7 +673,7 @@ PMW observations are mapped to the regular latitude-longitude grid by nearest
 neighbor interpolation.
 
 The global gridded IR geostationary observations are extracted at a temporal
-resolution of $\SI{30}{\minute}$ over a time range of 8 hours centered on the
+resolution of $\SI{30}{\minute}$ over a time range of $\SI{8}{\hour}$ centered on the
 median overpass time. Multi-channel Vis and IR observations from the ABI, AHI,
 and SEVIRI sensors are extracted over a time window of 1 hour and a temporal
 resolution of 10 minutes. The geostationary observations are mapped to the
@@ -733,13 +717,17 @@ Carrée) projection used for the figures.
 
 \section{Data Records}
 
+The SatRain dataset is openly available for manual download from
+\citep{SatRain2025}. Additionally, automated download functionality is provided
+by the \texttt{satrain} \citep{SatRainPython2025} Python package.
+
+
 \subsection{Dataset Organization}
 
 The SatRain dataset is organized in a hierarchical folder structure that mirrors
-its internal organization. At the top level, it is divided into two independent
+its conceptual structure. At the top level, it is divided into two independent
 subsets corresponding to collocation scenes from GMI overpasses and ATMS
-observations, with the underlying PMW instrument referred to as the base sensor.
-
+observations, with the underlying PMW instrument referred to as the \textit{base sensor}.
 For each base sensor, the data are partitioned into training, validation, and
 testing splits in line with machine learning best practices. The validation
 split contains samples from the first five days of each month, while the
@@ -751,14 +739,18 @@ To accommodate different computational and storage constraints, the training and
 validation data are further subdivided into size-based subsets ('\texttt{xs}',
 '\texttt{s}', '\texttt{m}', '\texttt{l}', and '\texttt{xl}'). This design
 supports lightweight experimentation on smaller systems as well as large-scale
-training on modern deep learning architectures. Although, files are not repeated across the size-based subsets, each of the subsets is intended to include the files in the preceeding, smaller subsets.
+training on modern deep learning architectures. Files are not repeated across
+the size-based subsets, instead each of the subsets is meant to include the
+files in the preceeding, smaller subsets. Users aiming to use the \texttt{xl}
+subset should thus combine files from all subsets.
 
-Finally, because training samples for each base sensor are available in both
-gridded and on-swath geometries, the directory structure also reflects this
-distinction. The resulting folder hierarchy is shown in
-Fig.~\ref{fig:train_val_organization}.
+Since all data is available in both gridded and on-swath geometries, the
+directory is split once more into the data represented using the on-swath and
+gridded spatial sampling. Finally, files are organized temporally into folders
+by year, month, and day of the month. The resulting folder hierarchy for the
+training and validation data is shown in Fig.~\ref{fig:train_val_organization}.
 
-\begin{figure}[htbp] % h=here, t=top, b=bottom, p=page of floats
+\begin{figure}[hbpt!] % h=here, t=top, b=bottom, p=page of floats
 
 	\dirtree{%
 		.1 satrain/.
@@ -787,21 +779,29 @@ Fig.~\ref{fig:train_val_organization}.
 	\label{fig:train_val_organization}
 \end{figure}
 
-The testing data are organized differently from the training and validation splits. Unlike those splits, the testing set is not subdivided into size-based subsets, since all evaluations must be performed on the same data to ensure comparability. Instead, the testing data are grouped into three spatial domains: CONUS, Korea, and Austria, which correspond to the available reference data sources: MRMS over CONUS, ground-based radar data over Korea, and in-situ measurements from the WegenerNet stations in Austria. The resulting folder hierarchy is illustrated in Fig.~\ref{fig:testing_organization}.
+The testing data are organized slightly differently from the training and
+validation splits. The testing set is not subdivided into size-based subsets,
+since all evaluations must be performed on the same data to ensure
+comparability. Instead, the testing data are grouped by the underlying spatial
+domain: CONUS, Korea, and Austria, which correspond to the available reference
+data sources: MRMS over CONUS, ground-based radar data over Korea, and in-situ
+measurements from the WegenerNet stations in Austria. The resulting folder
+hierarchy is illustrated in Fig.~\ref{fig:testing_organization}.
 
-A further distinction is that collocation scenes in the testing set are not
-divided into fixed-size patches. The original observation structure is preserved
-in order to avoid sampling distortions, simplify comparisons between gridded and
-on-swath retrievals, and enable direct evaluation of existing precipitation
-products on the test data.
+A further distinction between the training and validation data on one hand and
+the testing data on the other is that the collocation scenes in the testing set
+are not divided into fixed-size patches. The testing data preserves the original
+observation structure is to avoid sampling distortions, simplify comparisons
+between gridded and on-swath retrievals, and enable direct evaluation of
+existing precipitation products on the test data.
 
 
-\begin{figure}[htbp] % h=here, t=top, b=bottom, p=page of floats
+\begin{figure}[hbpt!] % h=here, t=top, b=bottom, p=page of floats
 
 	\dirtree{%
 		.1 satrain/.
 		.2 \textlangle base sensor\textrangle.
-		.3 \textlangle testing \textrangle.
+		.3  testing .
 		.4 austria.
 		.5 gridded.
 		.6 \textlangle year\textrangle /\textlangle month\textrangle /\textlangle day\textrangle .
@@ -836,8 +836,8 @@ NetCDF4 files. This modular organization allows users to download just the data
 they intend to use, for example, only the small ('\texttt{s}') subset of the GMI
 and target data to train and evaluate a retrieval using only passive microwave
 observations. Each file is identified using an individual prefix
-('\texttt{gmi}', '\texttt{atms}', '\texttt{geo}', '\texttt{geo\_ir}',
-'\texttt{ancillary}', '\texttt{target}') following a time stamp in the format
+('\texttt{gmi\_}', '\texttt{atms\_}', '\texttt{geo\_}', '\texttt{geo\_ir}',
+'\texttt{ancillary\_}', '\texttt{target\_}') following a time stamp in the format
 \texttt{YYYYMMDDHHMMSS} containing the median observation time. Input and target
 files corresponding to a specific training, validation, or testing sample can
 thus be identified using this timestamp.
@@ -855,11 +855,34 @@ The PMW observations in the SatRain dataset consist of observations from the GMI
 sensor and the ATMS sensor on the NOAA-20 satellite. They are stored in files
 labeled '\texttt{gmi\_\textlangle timestamp\textrangle.nc}' for the subset using
 GMI as base sensor and, correspondingly, '\texttt{atms\_\textlangle
-	timestamp\textrangle.nc}' for the subset using ATMS as base sensor. Each file
-contains the brightness temperatures in Kelvin for each channel (\texttt{observations}), the
-corresponding earth-incidence angles (\texttt{earth\_incidence\_angle}), and the observation time (\texttt{scan\_time}) corresponding to
-each scan line. The channels included for the GMI and ATMS sensors are listed in
-table~\ref{tab:pmw_channels}.
+  timestamp\textrangle.nc}' for the subset using ATMS as base sensor. Each file
+contains the brightness temperatures in Kelvin for each channel
+(\texttt{observations}), the corresponding earth-incidence angles in degree
+(\texttt{earth\_incidence\_angle}), and the observation time
+(\texttt{scan\_time}) corresponding to each scan line. The channels included for
+the GMI and ATMS sensors are listed in table~\ref{tab:pmw_channels}.
+
+\subsection{Geostationary Vis and IR Observations}
+
+The multi-channel, geostationary Vis and IR observations from the GOES,
+Himawari, and Meteosat platforms are stored in files named
+'\texttt{geo\_\textlangle timestamp\textrangle.nc}'. These files contain the
+observations closest in time to the measurement time of the reference
+precipitation estimates in the variable \texttt{observations}. The visible
+channels are stored as reflectances while thermal IR channels are stored using
+brightness temperatures. The geostationary data currently does not include
+viewing angles so the user will have to add them manually. The multi-timestep
+files (\texttt{geo\_t\_\textlangle timestamp \textrangle.nc}') contain
+observations from four 10-minute time steps prior to the collocation median and
+three 10-minute time steps after the collocation median time.
+
+Since GOES observations are only available over CONUS, the geostationary
+observations for the test data from the Korea and Austria domains are derived
+from AHI sensor onboard Himawari 8 and 9 and the SEVIRI sensor onboard Meteosat
+10. Table~\ref{tab:geo_channels} lists the central wavelengths of the
+channels of each of the included sensors. Since the sensors have different
+channels, the observations differ in their spectral coverage and users will need
+to account for that in their algorithm design.
 
 \subsection{Geostationary IR Observations}
 
@@ -873,27 +896,6 @@ measurement time of the reference precipitation estimates. The
 temporally-resolved GEO IR observations contain 16 half-hourly observations
 centered on the median observation time and are stored in files named
 '\texttt{geo\_ir\_t\_\textlangle timestamp\textrangle.nc}'.
-
-\subsection{Geostationary Vis and IR Observations}
-
-The multi-channel, geostationary Vis and IR observations are stored in files
-named '\texttt{geo\_\textlangle timestamp\textrangle.nc}'. These files contain
-the observations closest in time to the measurement time of the reference
-precipitation estimates in the variable \texttt{observations}. The visible
-channels are stored as reflectances while thermal IR channels are stored using
-brightness temperatures. The geostationary data currently does not include
-viewing angles so the user will have to add them manually. The multi-timestep
-files (\texttt{geo\_t\_\textlangle timestamp \textrangle.nc}') contain
-observations from four 10-minute time steps prior to the collocation median
-and three 10-minute time steps after the collocation median time.
-
-Since GOES observations are only available over CONUS, the geostationary
-observations for the test data from the Korea and Austria domains are derived
-from AHI sensor onboard Himawari 8 and 9 and the SEVIRI sensor onboard Meteosat
-10. Table~\ref{tab:geo_channels} lists the central wavelengths of the
-channels of each of the included sensors. Since the sensors have different
-channels, the observations differ in their spectral coverage and users will need
-to account for that in their algorithm design.
 
 \subsection{Ancillary Data}
 
@@ -957,18 +959,16 @@ not provided by the target data files from the Korea and Austria domains.
 
 \section{Technical Validation}
 
-To demonstrate the practical value of the dataset as well as its technical
-correctness, we have used the CONUS-based training data to train three different
-precipitation retrievals using the three principal input-observations types,
-i.e., multi-channel geostationary observations from the GOES ABI (GEO),
-single-channel IR observations from the CPCIR dataset (GEO IR), and PMW
-observations from GMI (GMI), and applied them to retrieve precipitation during
-the landfall of Typhoon Khanun over Korea. The retrievals use satellite
-observations only and do not make use of the ancillary data provided by the
-SatRain dataset. The retrievals implemented using a UNet architecture based on
-EfficientNet-V2 with 10 million parameters. The retrieved precipitation fields
-are compared to the reference ground-based radar estimates, and two baselines
-from the ERA-5 reanalysis dataset and the GPROF precipitation retrieval in Fig.~\ref{fig:case_study}.
+To assess the technical consistency of the dataset, we trained three
+precipitation retrieval models on the CONUS-based training data, each relying on
+one of the primary input observation types: multi-channel geostationary
+measurements from GOES ABI (GEO), single-channel infrared data from the CPCIR
+dataset (GEO-IR), and passive microwave observations from GMI (GMI). These
+models were then applied to estimate precipitation during the landfall of
+Typhoon Khanun over Korea. All retrievals rely solely on satellite observations
+and exclude the ancillary data included in SatRain. Each retrieval is
+implemented using a UNet architecture built on EfficientNet-V2 with 10 million
+parameters.
 
 \begin{figure}[htbp] % h=here, t=top, b=bottom, p=page of floats
 	\centering
@@ -983,20 +983,34 @@ from the ERA-5 reanalysis dataset and the GPROF precipitation retrieval in Fig.~
 		retrieval applied to GMI observations. Panels (d), (e), and (f) show
 		retrievals trained using the SatRain dataset over CONUS using multi-channel
 		Vis/IR observation, single-channel GEO-IR observations, and GMI PMW
-		observations, respectively.
+		observations, respectively. The dashed line marks the bounadary of the GMI
+		swath.
 	}
 	\label{fig:case_study}
 \end{figure}
 
-The results demonstrate that all retrievals capture the main precipitation
-structures of Typhoon Khanun, but with clear differences in accuracy reflecting
-the information content of their input observations \citep{Kidd2011GPM}. The
+The retrieved precipitation fields are compared to the reference ground-based
+radar estimates and two baselines from the ERA-5 reanalysis dataset and the
+GPROF precipitation retrieval in Fig.~\ref{fig:case_study}. The results
+demonstrate that all retrievals capture the main precipitation structures of
+Typhoon Khanun, but with clear differences in accuracy reflecting the
+information content of their input observations \citep{Kidd2011GPM}. The
 PMW-based retrieval performs best, reproducing much of the fine-scale structure
 evident in the reference estimates. The multi-channel geostationary retrieval
 captures the primary precipitation bands but misses finer details resolved by
 PMW. In contrast, the single-channel IR retrieval shows the weakest performance,
 with limited structural detail and correspondingly lower linear correlation and
 higher mean-squared error.
+
+Compared to the conventional baselines, the SatRain GMI retrieval shows visibly
+better agreement with the reference precipitation fields than GPROF V7, a result
+that is supported by scene-based accuracy metrics. The SatRain Vis and IR
+retrieval achieves accuracy comparable to ERA5 but worse than GPROF V7, which is
+expected since GPROF V7 leverages passive microwave observations that provide a
+more direct link to precipitation. The SatRain Geo-IR retrieval performs worse
+than both baseline for methods this specific case. However, this is consistent
+with the very limited information content available from its input observations.
+
 
 \begin{figure}[htbp] % h=here, t=top, b=bottom, p=page of floats
 	\centering
@@ -1012,28 +1026,56 @@ higher mean-squared error.
 	\label{fig:sensor_comparison}
 \end{figure}
 
-To quantitatively evaluate the retrievals illustrated in Fig.~\ref{fig:case_study}, we assessed models trained on the CONUS dataset against the three test datasets (CONUS, Austria, and Korea). The SatRain retrievals exhibit relatively large biases over both Austria and Korea, though these remain smaller than the bias of the GPROF V7 retrieval in Austria. These biases likely stem from training exclusively on CONUS data, consistent with earlier studies highlighting the influence of regional precipitation characteristics on retrieval accuracy \citep{Sohn2013WarmRain}. Importantly, such regional biases are not unique to SatRain but also affect operational products such as GPROF.
+The models trained on the CONUS dataset were further evaluated against three
+independent test domains (CONUS, Austria, and Korea). The results, displayed in
+Fig.~\ref{fig:sensor_comparison}, are consistent with the case study presented
+above. The SatRain-based GMI retrieval consistently outperforms the GPROF V7
+baseline, despite relying on the same observations. Retrievals based on
+geostationary measurements (GEO and GEO-IR) achieve lower accuracy overall but
+still surpass the ERA5 baseline. These improvements across multiple domains
+confirm both the technical soundness and the practical value of SatRain.
 
-For the other error metrics, however, the relative performance across Austria and Korea mirrors that observed over CONUS. Although the absolute values differ across the three domains, the ranking of the retrievals is preserved, suggesting that the benchmark accuracy metrics generalize across independent regions, measurement systems, and time periods.
+While the SatRain retrievals demonstrate notable biases over Austria and Korea,
+these are likely attributable to the exclusive use of CONUS data for training.
+Such systematic errors align with previous studies documenting the sensitivity
+of precipitation retrievals to regional precipitation characteristics
+\citep{Sohn2013WarmRain}. Importantly, these biases are not unique to SatRain
+but also affect operational products such as GPROF. Beyond these biases, the
+relative performance of SatRain versus the baseline retrievals mirrors the
+results obtained over CONUS. Despite differences in absolute error magnitudes
+across domains, the ranking of retrieval methods remains largely consistent,
+suggesting that SatRain-based evaluations generalize well across independent
+regions, sensors, and time periods.
 
-An exception to this general pattern is the geostationary VIS/IR retrieval over Austria, where accuracy is lower than in the other domains. This reduction is related to differences between the SEVIRI channels available over Austria and the ABI channels on GOES. Even when restricting the retrieval to a subset of channels matching those of ABI, performance still degraded, suggesting that small discrepancies in central wavelength, bandwidth, and calibration can negatively affect retrieval accuracy. Accommodating sensors with differing characteristics remains an open challenge in the design of machine learning–based retrievals, and we highlight this as one of the key issues that can be explored using the SatRain dataset.
+One exception occurs for the GEO retrieval over Austria, where MSE and MAE
+values increase relative to other domains. This degradation likely reflects
+differences between the SEVIRI channels available over Austria and the ABI
+channels on which the model was trained. Although training was limited to
+channels with the closest overlap and quantile remapping was applied to
+harmonize the distributions, discrepancies in channel characteristics and
+calibration still reduced performance. Accommodating such inter-sensor
+differences remains an open challenge for machine learning–based precipitation
+retrievals, and the SatRain dataset offers a platform to investigate these
+issues further.
 
-In addition to comparing a single ML model across observation modalities, we
-also evaluated how well SatRain can be used to quantify the skill of different
-ML approaches. Using GMI observations, we trained four retrieval models based on
-distinct techniques: Random Forests, XGBoost, a multi-layer perceptron (MLP),
-and a convolutional neural network (CNN). Their performance is compared in
-Fig.~\ref{fig:sensor_comparison}. The results show a consistent ranking across
-domains, with neural network–based methods providing the most accurate
-retrievals. Importantly, these accuracy gains persist outside the training
-region, demonstrating that improvements in model capability of generalize to
-global precipitation measurements.
+In addition to cross-sensor comparisons, we also used SatRain to evaluate the
+performance of different machine learning approaches. Using GMI and ATMS
+observations, we trained four retrieval models based on Random Forests, XGBoost,
+a multi-layer perceptron (MLP), and a convolutional neural network (CNN). Their
+performance, shown in Fig.~\ref{fig:sensor_comparison}, reveals a consistent
+ranking across both sensors and all three domains: CNN-based models clearly
+outperform the other techniques. Although the relative ordering of Random
+Forests, XGBoost, and MLP varies by region, their performance differences remain
+modest. These findings underscore SatRain’s utility as a robust and reliable
+benchmark for assessing the skill of machine learning–based precipitation
+retrievals.
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=1.0\textwidth]{figures/fig11}
 	\caption{
-		Like Fig. 8 but for four different machine-learning techniques trained on GMI observations.
+		Like Fig. 8 but for four different machine-learning techniques trained on GMI (first row)
+		and ATMS (second row) observations.
 	}
 	\label{fig:sensor_comparison}
 \end{figure}
@@ -1045,22 +1087,23 @@ provide a crucial check, ensuring that performance gains generalize beyond the
 training domain rather than reflecting overfitting to regional measurement
 errors or precipitation characteristics. In addition, the ability to evaluate
 models across sensor types and to combine observations from multiple sensors and
-time periods makes SatRain a flexible foundation for developing more advanced
+time periods makes SatRain a flexible foundation for developing advanced
 ML-based retrieval methods.
 
 \section{Usage Notes}
 
 Different scientific and societal applications may require precipitation
 retrievals to emphasize specific characteristics, such as retrievals targeting
-extreme precipitation. While no single benchmark can serve every possible use
-case, the SatRain dataset defines five distinct evaluation tasks designed to
-test the ability of ML algorithms to reproduce key aspects of precipitation
-events. These tasks include: (1) precipitation rate estimation, (2)
-probabilistic detection of precipitation, (3) deterministic detection of
-precipitation, (4) probabilistic detection of heavy precipitation, and (5)
-deterministic detection of heavy precipitation. We adopt thresholds of 0.1 mm/h
-and 10 mm/h to define precipitation and heavy precipitation, respectively.
-Figure~\ref{fig:sensor_comparison} illustrates example results for each of these
+extreme precipitation or specific precipitation types such as snow or hail.
+While no single benchmark can serve every possible use case, the SatRain dataset
+defines five distinct evaluation tasks designed to test the ability of ML
+algorithms to reproduce key aspects of precipitation events. These tasks
+include: (1) precipitation rate estimation, (2) probabilistic detection of
+precipitation, (3) deterministic detection of precipitation, (4) probabilistic
+detection of heavy precipitation, and (5) deterministic detection of heavy
+precipitation. We adopt thresholds of 0.1 mm/h and 10 mm/h to define
+precipitation and heavy precipitation, respectively.
+Figure~\ref{fig:tasks} illustrates example results for each of these
 tasks using the GMI retrieval presented in the previous section.
 
 
@@ -1078,7 +1121,7 @@ tasks using the GMI retrieval presented in the previous section.
 		heavy precipitation, defined as precipitation exceeding $\SI{10}{\milli \meter
 				\per \hour}$.
 	}
-	\label{fig:sensor_comparison}
+	\label{fig:tasks}
 \end{figure}
 
 
@@ -1119,36 +1162,40 @@ To ensure comparability of benchmark results across algorithms, evaluations
 should be performed against the gridded reference data. This approach avoids
 distortions in the evaluation statistics caused by the irregular spatial
 sampling of on-swath observations. For cross-track scanners, for example, both
-sampling density and spatial resolution decrease toward the swath edges, so
-evaluation at the native sensor geometry would underestimate the associated loss
-in accuracy. To facilitate reproducible comparisons, the reference data files
-include the scan and pixel coordinates of the nearest swath pixel, allowing
-on-swath observations to be consistently mapped to the gridded reference.
+sampling density and spatial resolution decrease toward the swath edges. The
+reduced sampling at the swath edges would thus underestimate the effect of the
+reduced resolution compared to evaluation against the gridded data. To
+facilitate reproducible comparisons, the gridded reference data files include the scan
+and pixel coordinates of the nearest swath pixel of the corresponding on-swath file.
+Using this information, the on-swath retrieval results can be mapped to the gridded
+reference data easily and consistently.
 
-A reference implementation of this protocol is available through the
-\texttt{ipwgml} package. By default, the evaluation compares all retrieval
+A reference implementation of the proposed protocol is available through the
+\texttt{satrain} package. By default, the evaluation compares all retrieval
 outputs against the reference precipitation estimates on the 0.036° regular
 latitude-longitude grid, ensuring results are independent of the retrieval’s
 native coordinate system. For the CONUS domain, evaluations should be restricted
-to regions with a radar-quality index of at least 0.5 and should include both
-snow and hail.
+to regions with a radar-quality index of at least 0.5 and should include all
+precipitation types. For the other two domains all reference estimates should be
+used for the evaluation.
 
 
-\subsection{The \texttt{ipwgml} package}
+\subsection{The \texttt{satrain} package}
 
-To simplify access to SatRain and accelerate adoption by the community, we have
-developed the ipwgml Python package. The package provides utilities to automate
-dataset download and management, ensuring that users can begin working with the
-dataset without the overhead of manual data handling. Comprehensive
-documentation is available at ipwgml.readthedocs.org including installation
-instructions, usage examples, and tutorials.
+To facilitate community access and encourage widespread adoption, we developed
+the \texttt{satrain} Python package. This package streamlines dataset download
+and management, allowing users to begin working with SatRain without the burden
+of manual data handling. Comprehensive documentation, including installation
+instructions, usage examples, and tutorials, is available at
+\url{satrain.readthedocs.org}.
 
-Beyond data access, the package implements the standardized evaluation protocol
-defined for SatRain. This functionality allows users to benchmark retrieval
-models trained directly on SatRain, as well as to assess independently developed
-retrievals against the same criteria. In doing so, the ipwgml package ensures
-that evaluation results are reproducible, consistent, and directly comparable
-across studies.
+In addition to data access, the package implements SatRain’s standardized
+evaluation protocol. This enables users to benchmark models trained directly on
+SatRain and to evaluate independently developed retrievals using the same
+criteria. By providing a simple interface function, users can leverage the
+package to automatically conduct evaluations across all testing domains, tasks,
+and metrics. The \texttt{satrain} package thus offers a fast, consistent, and
+reproducible framework for evaluating precipitation retrieval algorithms.
 
 \subsection{Limitations}
 
@@ -1157,7 +1204,7 @@ state-of-the-art techniques designed to reduce uncertainties in both the
 satellite observations and the precipitation reference. Despite these efforts,
 residual uncertainties and measurement errors remain in both components.
 
-On the input side, obviously corrupted satellite imagery is flagged and removed
+On the input side, clearly corrupted satellite imagery is flagged and removed
 from the satellite-observation data used to construct the SatRain dataset.
 However, more subtle issues such as undetected artifacts or gradual changes in
 sensor characteristics may persist and affect the data. These represent
@@ -1222,7 +1269,40 @@ generate it are openly available to encourage broad adoption and continued
 development. From the outset, the dataset was designed with future extensions in
 mind, and we invite contributions from the international community. Our hope is
 that SatRain will serve as a foundation for stronger global collaboration aimed
-at advancing precipitation detection and estimation.
+at advancing satellite-based precipitation estimation and detection.
+
+\section{Data Availability}
+
+\begin{itemize}
+\item GPM L1C observations for GMI and ATMS were downloaded from \cite{Berg2022_GMI_L1C_R_V07} and \cite{Berg2022_ATMS_NOAA20_1C_V07}, respectively.
+\item Observations from the GOES-16 ABI are available from \cite{NOAA_GOES_AWS}.
+\item Observations from the Himawari 8 and 9 AHI are available from \cite{NOAA_HIMAWARI_AWS}.
+\item SEVIRI observations are available from \cite{EUMETSAT_SEVIRI}.
+\item ERA5 data are available from \cite{CDS_ERA5}.
+\item The WegenerNet station data is available from \cite{WegenerNet2025}
+\end{itemize}
+
+\section{Code Availability}
+
+The \texttt{speed} package \citep{Speed2025} has been used to create the
+collocation scenes and extract the training, validation, and testing data for
+the SatRain dataset.
+
+The code to access the data and evaluate retrieval results is available through
+the \texttt{satrain} package \citep{SatRain2025}
+
+\section{Acknowledgements}
+
+
+The SatRain dataset contains modified Copernicus Climate Change Service
+information. Neither the European Commission nor ECMWF is responsible for any
+use that may be made of the Copernicus information or data it contains.
+
+\section{Author Contributions}
+
+SP has created the dataset and drafted the manuscript. All other author's have
+contributed to the design of the dataset and the writing of the manuscript.
+
 
 
 
