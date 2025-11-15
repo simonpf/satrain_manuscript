@@ -1,0 +1,143 @@
+* Reviewer #1
+
+This paper developed SatRain, the first AI-ready benchmark dataset for
+satellite-based detection and estimation of rain, snow, graupel, and hail.
+SatRain includes multi-sensor satellite observations representative of the major
+platforms currently used in precipitation remote sensing, paired with
+high-quality reference estimates from ground-based radars corrected using rain
+gauge measurements. The topic is very interesting and has important implications
+in prediction of urban weather. The paper is well organized and written.The
+findings of this study are worth of publication in the SD after revision as
+following: There are various types of global precipitation, such as convective
+rain, frontal rain, orographic rain, and typhoon rain. When the author cited
+examples to verify the reliability of the dataset, the current results only
+included typhoon-related precipitation cases and their spatial distribution,
+which is insufficient. In fact, it is essential to fully assess whether this
+precipitation dataset can capture the temporal and spatial variation
+characteristics of these different precipitation types, thereby demonstrating
+the robustness of the dataset's results. Particular attention should be paid to
+whether the dataset can effectively characterize locally intense convective
+precipitation, which has a small spatial scale and strong suddenness.
+
+
+** Respose
+We would like to thank the review for providing feedback on the manuscript.
+
+We agree with the reviewer that it is essential for the SatRain dataset to cover
+a wide range of different precipitation processes. Because of this we have
+designed the dataset to cover more than five years of data across various
+regions around the Earth. The results shown in Fig.~8 are meant only one of the more than 800 overpasses from the test data from the Korea domain. The retrieval evaluation shown in Fig.~9 covers 6_00, 8_00, 2_000 overpasses over the Austria, Korea, and CONUS domains respectively coverin a wide range of different precipitation events.
+
+To make this point clear, we have added an additional case study to the
+manuscript showing a convective precipitation event over the eastern CONUS. In
+addition to this, we have reformulated the description of the results in Fig.~9
+to clearly highlight that the evaluation covers a wide range of precipitation
+events.
+
+* Reviewer #2 (Remarks to the Authors (required)):
+
+SDATA-25-05168: A Benchmark Dataset for Satellite-Based Estimation and Detection
+of Rain This manuscript describes SatRain as the first AI-ready, standardized
+dataset that pairs multi-sensor satellite observations with high-quality
+ground-based radar precipitation estimates.
+
+The paper provides background on the challenges of global precipitation
+measurement and the need for a unified benchmark. It outlines the dataset’s
+content: GMI and ATMS observations, multi-channel geostationary imagery (e.g.,
+GOES-16 ABI), ancillary data, and gauge-corrected radar reference precipitation
+(MRMS over the majority of CONUS).
+
+SatRain covers 4 years of training/validation data and includes independent test
+sets over South Korea and an Austrian gauge network, enabling evaluation outside
+of CONUS. They also conduct technical validation experiments, training baseline
+machine-learning models (random forest, MLP, CNN, etc.) on SatRain and
+benchmarking them against traditional methods.
+
+The results demonstrate that models trained on SatRain can outperform
+conventional retrievals and maintain performance across regions and sensors,
+highlighting the dataset’s value. Overall, SatRain addresses a clear gap in the
+precipitation remote sensing community by providing an open, well-documented
+dataset to accelerate the development and comparison of ML precipitation
+retrievals. I do not see any fundamental weaknesses that require rethinking the
+approach, only minor improvements that can be made in a straightforward
+revision.
+
+** Response
+
+We would like to thank the reviewer for their thorough feedback on our manuscript.
+
+The writing of the paper gives the impression that SatRain is global
+or CONUS. Since the training domain excludes western CONUS, a region known for
+challenging precipitation retrieval due to orographic precipitation and Pacific
+jet stream influences. As a result, AI models trained solely on SatRain will
+inevitably reflect central and eastern CONUS precipitation characteristics,
+limiting generalization. The authors should explicitly acknowledge this
+limitation in both the abstract and title and clearly position SatRain as
+primarily a benchmark dataset over limited area, not a CONUS or globally
+representative training resource. I suggest clearly acknowledge that
+generalization beyond training regimes can be limited (even with non-CONUS test
+sets), and that western CONUS and other complex orographic regions remain a
+challenge.
+
+We agree with the reviewer that the generalization of retrievals trained using
+the SatRain data cannot be guaranteed and is an important limitation for the use
+of the dataset. It is not the case, however, that the SatRain dataset covers
+only western CONUS. We suspect that this misunderstanding originates from the
+fact that Figures 1 to 5 are cetnered on the western part of the domain. We have
+add a note to the manuscript to clarify that these figures are centered on the
+overpass but that the dataset covers all of CONUS.
+
+In Limitations, emphasize, snowfall uncertainty (gauges; MRMS
+gauge-correction not applied to snow), orographic precipitation challenges (beam
+blockage, mixed-phase microphysics), regional regime differences (e.g., warm
+rain vs. mixed-phase).
+
+We have added these very important points to the limitations section.
+
+
+This reads as honest and practical guidance for users. The choice of GMI (high
+information content) and ATMS (coarser, fewer precip-sensitive channels) nicely
+cover the idea of multiple instruments, but many products rely on a
+constellation. Expanding to additional PMW sensors would allow sensor-agnostic
+training and stronger cross-sensor robustness testing.
+
+Add to Future Directions a concrete plan for adding more PMW sensors, offering
+either a unified sensor-agnostic representation or sensor-specific subsets, and
+providing inter-sensor calibration/harmonization guidance. One suggestion is to
+mention widely-used multi-satellite precipitation products like NASA’s IMERG in
+the background, to further contextualize the state of the art. IMERG (Huffman et
+al. 2020) is a flagship global precipitation product that merges satellite
+retrievals and noting its existence (and the fact that it relies on underlying
+retrieval algorithms, GPROF, PERSIANN) would strengthen the motivation for
+SatRain.
+
+
+
+The technical design of SatRain is excellent and largely meets
+Scientific Data standards for a dataset description. The authors clearly
+describe the data sources and processing, all satellite observations are
+carefully collocated to each passive microwave overpass time, and are provided
+in two spatial formats (native swath vs. a common grid). This dual-format
+approach smartly accommodates both pixel-wise methods and those requiring
+gridded imagery, ensuring “AI-readiness”.
+
+There is a minor inconsistency about
+whether year 2018 is included in training: “The SatRain training data is derived
+from four years (2018-2021) of ground based radar measurements over CONUS ….
+Training and validation data are extracted from the years 2019 through 2021”.
+Please clarify this.
+
+Clearly restate the split policy in one place. Avoid split
+info scattered in multiple sections.
+
+The case study and cross-domain metrics convincingly show estimation skill.
+Since detection tasks (rain/no rain, heavy rain) are part of the benchmark,
+include (even briefly) a quantitative detection result (e.g., HSS or PR AUC) for
+at least one model vs. a baseline. The baselines deliberately exclude ancillary
+data to isolate sensor contributions. It would help to note (in Usage
+Notes/Future Directions) that adding ancillary variables often improves
+retrieval skill and that SatRain enables those studies (even if you don’t
+present them here).
+
+Use consistent forms (e.g., CONUS vs US, ERA5 vs “ERA-5”; NEXRAD capitalization,
+and many more).
