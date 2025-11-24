@@ -1,0 +1,77 @@
+\documentclass[a4paper]{article}
+
+\usepackage[usenames, dvipsnames]{xcolor}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{natbib}
+\setcitestyle{authoryear,open={((},close={))}} %Citation-related commands
+%\usepackage[backend=biber, style=apa, sorting=nyt]{biblatex}
+%\addbibresource{references.bib} %Import the bibliography file
+
+\title{
+	Response to Reviewers\\
+	\normalsize \vspace{\baselineskip}
+	A Benchmark Dataset for Satellite-Based Estimation and Detection of Rain
+}
+\date{\today}
+
+\usepackage{siunitx}
+\usepackage{todonotes}
+\usepackage{natbib}
+\usepackage{booktabs}
+\bibliographystyle{abbrvnat}
+\setcitestyle{authoryear,open={(},close={)}} %Citation-related commands
+
+\usepackage{caption}
+\renewcommand{\thefigure}{R\arabic{figure}} % changes figure numbering to 'RC1.#'
+\renewcommand{\thetable}{R\arabic{figure}} % changes figure numbering to 'RC1.#'
+
+\newcommand{\rc}{\color{CadetBlue}}
+\newcommand{\reply}{\color{black}}
+
+\RequirePackage[normalem]{ulem} %DIF PREAMBLE
+\RequirePackage{luacolor}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{{\protect\textcolor{blue}{\uwave{#1}}}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{{\protect\textcolor{red}{\sout{#1}}}}                      %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE \providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+
+\mdfdefinestyle{change}{%
+	topline=false,
+	leftline=true,
+	rightline=false,
+	bottomline=false
+}
+
+\newenvironment{change}[1][]{%
+	\begin{mdframed}[frametitle={Changes starting in line #1:}, style=change]%
+		}{%
+	\end{mdframed}%
+}
+
+\begin{document}
+
+\maketitle
+
+
+We thank both reviewers for their constructive feedback. Their insights have
+helped us refine the manuscript, and we are confident that our revisions address
+all points raised.
+
+
+\include{reply_1}
+
+\include{reply_2}
+
+\bibliographystyle{plainnat}
+\bibliography{embedded_refs}
+
+\end{document}
